@@ -30,7 +30,8 @@ class RedactorClipsPlugin extends BasePlugin
 	{
 		if (craft()->request->isCpRequest())
 		{
-			craft()->templates->includeCssResource('redactorclips/css/clips.css');
+			craft()->templates->includeCssResource('redactorclips/clips.css');
+			craft()->templates->includeJsResource('redactorclips/clips.js');
 		}
 	}
 }
