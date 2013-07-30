@@ -1,0 +1,20 @@
+<!-- Clips modal HTML -->
+<div id="clipsmodal" style="display: none;">
+	<section>
+		<ul class="redactor_clips_box">
+			{% for clip in clips %}
+				<li>
+					<a href="#" class="redactor_clip_link">{{ clip.name }}</a>
+
+					<div class="redactor_clip" style="display: none;">
+						{{ clip.html | raw }}
+					</div>
+				</li>
+			{% endfor %}
+		</ul>
+	</section>
+	<footer>
+		<a href="#" class="redactor_modal_btn redactor_btn_modal_close">Close</a>
+	</footer>
+</div>
+<!-- end Clips modal HTML -->

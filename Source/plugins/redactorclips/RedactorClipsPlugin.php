@@ -32,6 +32,54 @@ class RedactorClipsPlugin extends BasePlugin
 		{
 			craft()->templates->includeCssResource('redactorclips/clips.css');
 			craft()->templates->includeJsResource('redactorclips/clips.js');
+
+			$modalHtml = craft()->templates->render('redactorclips/modal', array(
+				'clips' => $this->getSettings()->clips
+			));
+
+			craft()->templates->includeFootNode($modalHtml);
 		}
+	}
+
+	protected function defineSettings()
+	{
+		return array(
+			'clips' => array(AttributeType::Mixed, 'default' => array())
+		);
+	}
+
+	public function getSettingsHtml()
+	{
+		return craft()->templates->renderMacro('_includes/forms', 'editableTableField', array(
+			array(
+				'label' => Craft::t('Clips'),
+				'instructions' => Craft::t('Define the clips you want to be available in your Rich Text fields.'),
+				'id'   => 'clips',
+				'name' => 'clips',
+				'jsName' => 'settings[clips]',
+				'cols' => array(
+							'name' => array('heading' => Craft::t('Name'), 'type' => 'singleline', 'width' => '25%'),
+							'html' => array('heading' => Craft::t('HTML'), 'type' => 'multiline', 'class' => 'code')
+						),
+				'rows' => $this->getSettings()->clips
+			)
+		));
+	}
+
+	/**
+	 * Preps the settings before they're saved to the database.
+	 *
+	 * @param array $settings
+	 * @return array
+	 */
+	public function prepSettings($settings)
+	{
+		if (!empty($settings['clips']))
+		{
+			// Drop the string row keys
+			$settings['clips'] = array_values($settings['clips']);
+		}
+
+		return $settings;
 	}
 }
