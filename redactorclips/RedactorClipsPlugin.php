@@ -56,7 +56,6 @@ class RedactorClipsPlugin extends BasePlugin
 				'instructions' => Craft::t('Define the clips you want to be available in your Rich Text fields.'),
 				'id'   => 'clips',
 				'name' => 'clips',
-				'jsName' => 'settings[clips]',
 				'cols' => array(
 							'name' => array('heading' => Craft::t('Name'), 'type' => 'singleline', 'width' => '25%'),
 							'html' => array('heading' => Craft::t('HTML'), 'type' => 'multiline', 'class' => 'code')
