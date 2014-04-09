@@ -37,7 +37,7 @@ class RedactorClipsPlugin extends BasePlugin
 				'clips' => $this->getSettings()->clips
 			));
 
-			craft()->templates->includeFootNode($modalHtml);
+			craft()->templates->includeFootHtml($modalHtml);
 		}
 	}
 
