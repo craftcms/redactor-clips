@@ -28,16 +28,19 @@ class RedactorClipsPlugin extends BasePlugin
 
 	public function init()
 	{
-		if (craft()->request->isCpRequest())
+		if (!craft()->isConsole())
 		{
-			craft()->templates->includeCssResource('redactorclips/clips.css');
-			craft()->templates->includeJsResource('redactorclips/clips.js');
+			if (craft()->request->isCpRequest())
+			{
+				craft()->templates->includeCssResource('redactorclips/clips.css');
+				craft()->templates->includeJsResource('redactorclips/clips.js');
 
-			$modalHtml = craft()->templates->render('redactorclips/modal', array(
-				'clips' => $this->getSettings()->clips
-			));
+				$modalHtml = craft()->templates->render('redactorclips/modal', array(
+					'clips' => $this->getSettings()->clips
+				));
 
-			craft()->templates->includeFootHtml($modalHtml);
+				craft()->templates->includeFootHtml($modalHtml);
+			}
 		}
 	}
 
