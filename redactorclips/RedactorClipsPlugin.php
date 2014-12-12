@@ -35,11 +35,15 @@ class RedactorClipsPlugin extends BasePlugin
 				craft()->templates->includeCssResource('redactorclips/clips.css');
 				craft()->templates->includeJsResource('redactorclips/clips.js');
 
-				$modalHtml = craft()->templates->render('redactorclips/modal', array(
-					'clips' => $this->getSettings()->clips
-				));
+				$clips = array();
 
-				craft()->templates->includeFootHtml($modalHtml);
+				foreach ($this->getSettings()->clips as $clip)
+				{
+					$clips[] = array($clip['name'], $clip['html']);
+				}
+
+				$js = 'RedactorPlugins.clips.items = '.JsonHelper::encode($clips).';';
+				craft()->templates->includeJs($js);
 			}
 		}
 	}
