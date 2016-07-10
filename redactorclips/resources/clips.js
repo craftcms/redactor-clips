@@ -33,7 +33,15 @@ RedactorPlugins.clips = function()
 
 			this.modal.addTemplate('clips', '<div class="modal-section">' + this.utils.getOuterHtml(this.clips.template) + '</div>');
 
+			// BEGIN HACK
+
+			/*
 			var button = this.button.add('clips', 'Clips');
+			*/
+
+			var button = this.button.addAfter('link', 'clips', 'Clips');
+
+			// END HACK
 
 			this.button.addCallback(button, this.clips.show);
 
