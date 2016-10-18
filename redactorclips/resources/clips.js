@@ -41,7 +41,7 @@ RedactorPlugins.clips = function()
 		{
 			this.modal.load('clips', 'Insert Clips', 400);
 
-			this.modal.createCancelButton();
+			this.modal.getCancelButton();
 
 			$('#redactor-modal-list').find('.redactor-clip-link').each($.proxy(this.clips.load, this));
 
