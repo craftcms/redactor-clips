@@ -4,7 +4,7 @@
             "downloadUrl": "https://github.com/pixelandtonic/RedactorClips/archive/1.2.1.zip",
             "date": "2016-10-18T12:00:00-08:00",
             "notes": [
-                "[FixedFixed a JavaScript error when clicking the cancel button in a modal."
+                "[Fixed] Fixed a JavaScript error when clicking the cancel button in a modal."
             ]
     },
     {
