@@ -1,0 +1,50 @@
+{
+  "name": "craftcms/redactor-clips",
+  "description": "This plugin Adds Redactor’s “Clips” plugin to Rich Text fields in Craft, which lets you insert predefined code snippets.",
+  "version": "2.0.0",
+  "type": "craft-plugin",
+  "keywords": [
+    "html",
+    "hours",
+    "store",
+    "cms",
+    "craftcms",
+    "json",
+    "yii2"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Pixel & Tonic",
+      "homepage": "https://pixelandtonic.com/"
+    }
+  ],
+  "support": {
+    "email": "support@craftcms.com",
+    "issues": "https://github.com/craftcms/redactor-clips/issues?state=open",
+    "source": "https://github.com/craftcms/redactor-clips",
+    "docs": "https://github.com/craftcms/redactor-clips",
+    "rss": "https://github.com/craftcms/redactor-clips/commits/v2.atom"
+  },
+  "require": {
+    "craftcms/cms": "~3.0.0-beta.20"
+  },
+  "autoload": {
+    "psr-4": {
+      "craft\\redactorclips\\": "src/"
+    }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ],
+  "extra": {
+    "name": "Redactor Clips",
+    "handle": "redactor-clips",
+    "schemaVersion": "1.0.2",
+    "changelogUrl": "https://raw.githubusercontent.com/craftcms/redactor-clips/v2/CHANGELOG.md",
+    "downloadUrl": "https://github.com/craftcms/redactor-clips/archive/v2.zip"
+  }
+}

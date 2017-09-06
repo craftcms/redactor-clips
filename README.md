@@ -1,33 +1,25 @@
-# Redactor Clips plugin for Craft
+Redactor Clips for Craft CMS
+===================
 
-Adds Redactor’s “Clips” [plugin](http://imperavi.com/redactor/docs/plugins/) to Rich Text fields in Craft, which lets you insert predefined code snippets.
+This plugin Adds Redactor’s “Clips” plugin to Rich Text fields in Craft, which lets you insert predefined code snippets.
 
-You can manage your code snippets from Settings → Plugins → Redactor Clips.
+## Requirements
+
+This plugin requires Craft CMS 3.0.0-beta.1 or later.
+
 
 ## Installation
 
-To install Redactor Clips, copy the redactorclips/ folder into craft/plugins/, and then go to Settings → Plugins and click the “Install” button next to “Redactor Clips”.
+To install the plugin, follow these instructions.
 
-Once installed, open your craft/config/redactor/ folder, and add the `clips` plugin in whichever Redactor configs you want it to be enabled in:
+1. Open your terminal and go to your Craft project:
 
-```javascript
-"plugins": ["clips" /* , ... */ ]
-```
+        cd /path/to/project
 
-## Changelog
+2. Then tell Composer to load the plugin:
 
-### 1.2.1
+        composer require craftcms/redactor-clips
 
-* Fixed a JavaScript error when clicking the cancel button in a modal.
+3. In the Control Panel, go to Settings → Plugins and click the “Install” button for Redactor Clips.
 
-### 1.2
-
-* Updated the Clips plugin to take advantage of Craft 2.5 features
-
-### 1.1
-
-* Updated the Clips plugin for Redactor 10 compatibility
-
-### 1.0
-
-* Initial release
+4. You can now create a Redactor Clips field type under Settings → Fields.
