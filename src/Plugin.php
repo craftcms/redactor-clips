@@ -1,138 +1,80 @@
 <?php
-namespace Craft;
+/**
+ * @link      https://craftcms.com/
+ * @copyright Copyright (c) Pixel & Tonic, Inc.
+ * @license   https://craftcms.com/license
+ */
+
+namespace craft\redactorclips;
+
+use craft\redactorclips\models\Settings;
+use craft\helpers\Json;
+use Craft;
 
 /**
  * Redactor Clips plugin
  */
-class RedactorClipsPlugin extends BasePlugin
+class Plugin extends \craft\base\Plugin
 {
-	/**
-	 * @return string
-	 */
-	public function getName()
-	{
-		return 'Redactor Clips';
-	}
+    /**
+     * @inheritdoc
+     */
+    public $hasCpSettings = true;
 
-	/**
-	 * @return string
-	 */
-	public function getVersion()
-	{
-		return '1.2.1';
-	}
+    // Public Methods
+    // =============================================================================
 
-	/**
-	 * @return string
-	 */
-	public function getSchemaVersion()
-	{
-		return '1.0.0';
-	}
+    /**
+     * @inheritdoc
+     */
+    public function init()
+    {
+        if (!Craft::$app->getRequest()->getIsConsoleRequest()) {
+            if (Craft::$app->getRequest()->isCpRequest) {
+                Craft::$app->getView()->registerAssetBundle(Asset::class);
+                Craft::$app->getView()->registerCss(Asset::class);
 
-	public function getDeveloper()
-	{
-		return 'Pixel & Tonic';
-	}
+                $clips = [];
+                foreach ($this->getSettings()->clips as $clip) {
+                    $clips[] = [$clip['name'], $clip['html']];
+                }
 
-	public function getDeveloperUrl()
-	{
-		return 'http://pixelandtonic.com';
-	}
+                $js = 'RedactorPlugins.clips.items = '.Json::encode($clips).';';
+                Craft::$app->getView()->registerJs($js);
+            }
+        }
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getPluginUrl()
-	{
-		return 'https://github.com/pixelandtonic/RedactorClips';
-	}
+    // Protected Methods
+    // =============================================================================
 
-	/**
-	 * @return string
-	 */
-	public function getDocumentationUrl()
-	{
-		return $this->getPluginUrl().'/blob/master/README.md';
-	}
+    /**
+     *
+     * @return mixed
+     */
 
-	/**
-	 * @return string
-	 */
-	public function getReleaseFeedUrl()
-	{
-		return 'https://raw.githubusercontent.com/pixelandtonic/RedactorClips/master/releases.json';
-	}
+    protected function settingsHtml()
+    {
+        return Craft::$app->getView()->renderTemplateMacro('_includes/forms', 'editableTableField', [
+            [
+                'label' => Craft::t('redactor-clips', 'Clips'),
+                'instructions' => Craft::t('redactor-clips', 'Define the clips you want to be available in your Rich Text fields.'),
+                'id' => 'clips',
+                'name' => 'clips',
+                'cols' => [
+                    'name' => ['heading' => Craft::t('redactor-clips', 'Name'), 'type' => 'singleline', 'width' => '25%'],
+                    'html' => ['heading' => Craft::t('redactor-clips', 'HTML'), 'type' => 'multiline', 'class' => 'code']
+                ],
+                'rows' => $this->getSettings()->clips
+            ]
+        ]);
+    }
 
-	/**
-	 * @return mixed
-	 */
-	public function getSettingsHtml()
-	{
-		return craft()->templates->renderMacro('_includes/forms', 'editableTableField', array(
-			array(
-				'label' => Craft::t('Clips'),
-				'instructions' => Craft::t('Define the clips you want to be available in your Rich Text fields.'),
-				'id'   => 'clips',
-				'name' => 'clips',
-				'cols' => array(
-							'name' => array('heading' => Craft::t('Name'), 'type' => 'singleline', 'width' => '25%'),
-							'html' => array('heading' => Craft::t('HTML'), 'type' => 'multiline', 'class' => 'code')
-						),
-				'rows' => $this->getSettings()->clips
-			)
-		));
-	}
-
-	/**
-	 * Preps the settings before they're saved to the database.
-	 *
-	 * @param array $settings
-	 * @return array
-	 */
-	public function prepSettings($settings)
-	{
-		if (!empty($settings['clips']))
-		{
-			// Drop the string row keys
-			$settings['clips'] = array_values($settings['clips']);
-		}
-
-		return $settings;
-	}
-
-	/**
-	 *
-	 */
-	public function init()
-	{
-		if (!craft()->isConsole())
-		{
-			if (craft()->request->isCpRequest())
-			{
-				craft()->templates->includeCssResource('redactorclips/clips.css');
-				craft()->templates->includeJsResource('redactorclips/clips.js');
-
-				$clips = array();
-
-				foreach ($this->getSettings()->clips as $clip)
-				{
-					$clips[] = array($clip['name'], $clip['html']);
-				}
-
-				$js = 'RedactorPlugins.clips.items = '.JsonHelper::encode($clips).';';
-				craft()->templates->includeJs($js);
-			}
-		}
-	}
-
-	/**
-	 * @return array
-	 */
-	protected function defineSettings()
-	{
-		return array(
-			'clips' => array(AttributeType::Mixed, 'default' => array())
-		);
-	}
+    /**
+     * @inheritdoc
+     */
+    protected function createSettingsModel(): Settings
+    {
+        return new Settings();
+    }
 }
