@@ -45,7 +45,7 @@ class RedactorClipsPlugin extends BasePlugin
 	 */
 	public function getPluginUrl()
 	{
-		return 'https://github.com/pixelandtonic/RedactorClips';
+		return 'https://github.com/craftcms/redactor-clips';
 	}
 
 	/**
@@ -61,7 +61,7 @@ class RedactorClipsPlugin extends BasePlugin
 	 */
 	public function getReleaseFeedUrl()
 	{
-		return 'https://raw.githubusercontent.com/pixelandtonic/RedactorClips/master/releases.json';
+		return 'https://raw.githubusercontent.com/craftcms/redactor-clips/master/releases.json';
 	}
 
 	/**
