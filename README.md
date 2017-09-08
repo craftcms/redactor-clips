@@ -13,21 +13,3 @@ Once installed, open your craft/config/redactor/ folder, and add the `clips` plu
 ```javascript
 "plugins": ["clips" /* , ... */ ]
 ```
-
-## Changelog
-
-### 1.2.1
-
-* Fixed a JavaScript error when clicking the cancel button in a modal.
-
-### 1.2
-
-* Updated the Clips plugin to take advantage of Craft 2.5 features
-
-### 1.1
-
-* Updated the Clips plugin for Redactor 10 compatibility
-
-### 1.0
-
-* Initial release
