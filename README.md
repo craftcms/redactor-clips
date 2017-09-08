@@ -5,7 +5,7 @@ This plugin Adds Redactor’s “Clips” plugin to Rich Text fields in Craft, w
 
 ## Requirements
 
-This plugin requires Craft CMS 3.0.0-beta.1 or later.
+This plugin requires Craft CMS 3.0.0-beta.26 or later.
 
 
 ## Installation

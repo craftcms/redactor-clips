@@ -1,9 +1,20 @@
 <?php
+/**
+ * @link      https://craftcms.com/
+ * @copyright Copyright (c) Pixel & Tonic, Inc.
+ * @license   https://craftcms.com/license
+ */
 
 namespace craft\redactorclips;
 
 use craft\web\AssetBundle;
 
+/**
+ * Redactor Clips plugin.
+ *
+ * @author Pixel & Tonic, Inc. <support@pixelandtonic.com>
+ * @since  2.0
+ */
 class Asset extends AssetBundle
 {
     /**

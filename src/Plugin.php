@@ -12,7 +12,10 @@ use craft\helpers\Json;
 use Craft;
 
 /**
- * Redactor Clips plugin
+ * Redactor Clips plugin.
+ *
+ * @author Pixel & Tonic, Inc. <support@pixelandtonic.com>
+ * @since  2.0
  */
 class Plugin extends \craft\base\Plugin
 {
@@ -49,11 +52,9 @@ class Plugin extends \craft\base\Plugin
     // =============================================================================
 
     /**
-     *
-     * @return mixed
+     * @inheritdoc
      */
-
-    protected function settingsHtml()
+    protected function settingsHtml(): string
     {
         return Craft::$app->getView()->renderTemplateMacro('_includes/forms', 'editableTableField', [
             [
