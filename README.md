@@ -22,4 +22,10 @@ To install the plugin, follow these instructions.
 
 3. In the Control Panel, go to Settings → Plugins and click the “Install” button for Redactor Clips.
 
-4. You can now create a Redactor Clips field type under Settings → Fields.
+4. Open your `craft/config/redactor/` folder, and add the `clips` plugin in whichever Redactor configs you want it to be enabled in:
+
+```javascript
+"plugins": ["clips" /* , ... */ ]
+```
+
+5. Any Redactor fields using those configs will have a “Clips” menu button with your custom defined clips in it.
